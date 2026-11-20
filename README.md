@@ -46,7 +46,7 @@ godot --headless --path . -- --server
 ```
 
 ## Verification
-The full 0.9.0 source archive delivered alongside this repository snapshot contains the extended 76 Python contract tests, 5 mocked Edge Function handler tests and strict TypeScript checks. The GitHub branch also includes a compact smoke-contract suite:
+The full 0.9.0 source archive delivered alongside this repository snapshot contains the extended 77 Python contract tests, 5 mocked Edge Function handler tests and strict TypeScript checks. The GitHub branch also includes a compact smoke-contract suite:
 
 ```bash
 python -m unittest discover -s tests -p 'test_project_contracts.py' -v
