@@ -12,7 +12,7 @@
 - Build/security/release documentation.
 
 ## Local verification recorded for the 0.9.0 source package (2026-11-20)
-- Python contract suite: **52/52 passed**.
+- Python contract suite: **76/76 passed**.
 - Node Edge Function handler tests: **5/5 passed**.
 - Strict TypeScript checks: both ticket Edge Functions passed.
 - Python compileall: passed.
