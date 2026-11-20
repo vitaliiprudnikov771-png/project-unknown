@@ -30,3 +30,5 @@
 - Final callback indentation fix: `held_actions.erase(action)` now aligns with `Input.action_release(action)` at the lambda-body level; regression tests assert the exact indentation contract.
 
 - CI run #10 confirmed the remaining blocker was the extra indentation on `held_actions.erase(action)` in the `button_up` lambda. The statement has been moved to the correct lambda-body level; the local regression suite now checks this exact line.
+
+- Added a repository-level 15-test Python contract suite to the Android workflow; it runs before toolchain setup. Fixed the legacy test's undefined `read()` helper and added Godot 4.3 mobile-control parameter/indentation assertions.
