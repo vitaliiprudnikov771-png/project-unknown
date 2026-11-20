@@ -19,3 +19,8 @@
 - Godot 4.7.2 headless import and scene startup: exit code 0.
 - YAML syntax: parsed successfully.
 - Android APK export: pending a real GitHub Actions run; local environment lacks Android SDK/build-tools and Godot 4.3 export templates.
+
+## Godot 4.3 CI compatibility fix
+- The first cloud run exposed an invalid `Array + PackedInt32Array` expression in the legacy 2D test scene; it now builds a `PackedInt32Array` and appends peers explicitly.
+- The second run exposed a mobile-control optional argument using inferred `:=` syntax; it now uses the Godot 4.3-compatible `right_side: bool = false` declaration.
+- Added contract tests for both regressions and made CI fail on `SCRIPT ERROR:` or `ERROR:` during Godot import and smoke testing.
