@@ -42,7 +42,7 @@
 - Added `.github/workflows/android-debug.yml` for GitHub-hosted builds on pushes to `main` and manual dispatch. It installs Godot 4.3 stable with matching export templates, JDK 17, Android Platform 34, Build Tools 34.0.0, NDK 23.2.8568313 and CMake 3.10.2.4988404.
 - The workflow creates a fresh temporary debug signing key per run, smoke-tests the main scene, validates APK archive integrity and package metadata, then uploads `project-unknown-android-debug` for 7 days. Uninstall an older debug APK before installing one from a later run.
 - No release keystore, Supabase secret, migration deployment, Edge Function deployment or public server setup is included.
-- Local verification: 77/77 Python contract tests passed; 5/5 Edge Function tests passed; each Edge Function passed an independent strict TypeScript check; YAML parsed; Godot 4.7.2 headless import and main-scene startup exited 0.
+- Local verification: 78/78 Python contract tests passed; 5/5 Edge Function tests passed; each Edge Function passed an independent strict TypeScript check; YAML parsed; Godot 4.7.2 headless import and main-scene startup exited 0.
 - Limitations: this environment has no Android SDK, Android build-tools, JDK 17 or Godot 4.3 export templates, and network DNS is unavailable. Local APK export therefore remains unverified. Godot 4.7.2 was used only for local import/startup checks, not as a substitute for the planned Godot 4.3 cloud build. The GitHub Actions run remains pending; the source is on the public repository branch `codex/project-bootstrap-0.9.0` and can be built through manual dispatch or a pull-request run.
 
 ## Post-0.8 Supabase API-key compatibility review

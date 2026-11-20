@@ -33,7 +33,7 @@ func _register_actions() -> void:
 		key_event.physical_keycode = keys[action]
 		InputMap.action_add_event(action, key_event)
 
-func _add_direction_button(caption: String, action: String, offset: Vector2, right_side := false) -> void:
+func _add_direction_button(caption: String, action: String, offset: Vector2, right_side: bool = false) -> void:
 	var button := Button.new()
 	button.text = caption
 	button.custom_minimum_size = BUTTON_SIZE if not right_side else Vector2(118, 82)
