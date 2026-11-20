@@ -1,37 +1,36 @@
 # PROJECT UNKNOWN — development status
 
-## Current source snapshot
+**Current milestone:** source import and Android CI preparation on branch `codex/project-bootstrap-0.9.0`.
 
-Prepared local source package: `PROJECT_UNKNOWN_0.9.0_CODESPACES_IMPORT.zip`.
+## Imported source
+- Godot 4.3+ project configuration and Android debug export preset.
+- Supabase Auth screen, in-memory session manager and profile loading.
+- Original procedural 3D block-style lobby with mobile controls and third-person player.
+- ENet client/dedicated server autoload, server-owned movement, input bounds/rate limiting, stale-input timeout and authenticated single-use ticket handshake.
+- Supabase Edge Function sources and migration for short-lived one-time game login tickets.
+- GitHub Actions Android debug APK workflow.
+- Build/security/release documentation.
 
-The project is an Android-first Godot 4.x prototype with:
-- Supabase email/password authentication and player profiles.
-- A procedural 3D block-style lobby and mobile controls.
-- ENet client/server transport with server-owned movement simulation.
-- A short-lived, single-use game-login ticket handshake.
-- GitHub Actions workflow source for a debug Android APK.
-
-## Verification completed on 2026-11-20
-
+## Local verification recorded for the 0.9.0 source package (2026-11-20)
 - Python contract suite: **52/52 passed**.
-- Node Edge Function tests: **5/5 passed**.
-- TypeScript strict checks: both game-ticket Edge Functions passed.
+- Node Edge Function handler tests: **5/5 passed**.
+- Strict TypeScript checks: both ticket Edge Functions passed.
+- Python compileall: passed.
 - Godot 4.7.2 Linux headless editor import: passed.
 - Godot 4.7.2 main-scene smoke test: passed.
+- YAML workflow parse and secret scan: passed.
 
-These checks do not prove Android export, live Supabase integration, public server deployment, or multiplayer behavior across real devices.
+These checks do not prove Godot 4.3 runtime behavior, Android export, live Supabase integration, public server deployment, or multiplayer behavior across real devices.
 
-## Remaining release blockers
+## Release blockers
+1. Run the GitHub Actions Android debug workflow and inspect its APK artifact.
+2. Install and test the APK on a physical Android device.
+3. Reconcile and apply the game-ticket migration, then deploy both Edge Functions to the intended Supabase project.
+4. Deploy the dedicated ENet server and run two-client authentication/movement tests.
+5. Add encrypted transport or proof-of-possession, rate limiting, abuse controls and monitoring before public hosting.
 
-1. Import the full source tree into this repository.
-2. Run the Android Debug APK workflow and inspect its artifact.
-3. Test the APK on a physical Android device.
-4. Apply the game-ticket migration and deploy both Edge Functions to Supabase.
-5. Deploy the dedicated ENet server and run two-client authentication/movement tests.
-6. Add encrypted transport or proof-of-possession before any public deployment.
-
-## Security notes
-
-- Never commit Supabase secret or service-role keys.
-- Keep the game-server shared secret only in server-side environment variables.
-- Do not expose the current development ENet server publicly until transport protection, abuse controls, and monitoring are implemented.
+## Security
+- Never commit Supabase secret/service_role keys or game-server shared secrets.
+- The client-side Supabase publishable key is public by design.
+- The current development ENet transport is not encrypted. Do not expose the development game server publicly.
+- The GitHub repository is currently public; review that visibility before placing additional proprietary or sensitive source in it.

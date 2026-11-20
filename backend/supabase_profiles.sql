@@ -1,0 +1,9 @@
+-- Reference only. The player_profiles table was already created and secured
+-- in the connected Supabase project before this source snapshot was prepared.
+-- Its deployed schema uses id UUID PRIMARY KEY REFERENCES auth.users(id),
+-- username, display_name, avatar JSONB, level, xp, coins, created_at and updated_at.
+-- RLS is enabled. Authenticated users may read their own profile and update
+-- only username, display_name and avatar. Economy fields are server-controlled.
+--
+-- Do not run a second, conflicting profile schema migration here. Inspect the
+-- actual project migration history with the Supabase CLI before changing it.
