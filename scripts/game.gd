@@ -142,7 +142,9 @@ func _on_server_disconnected() -> void:
 
 func _on_peer_connected(id: int) -> void:
 	if multiplayer.is_server():
-		for existing_id in [1] + multiplayer.get_peers():
+		var peer_ids := PackedInt32Array([1])
+		peer_ids.append_array(multiplayer.get_peers())
+		for existing_id in peer_ids:
 			rpc("register_player", int(existing_id))
 		_set_status("ИГРОК #%d ПОДКЛЮЧИЛСЯ" % id)
 
@@ -155,7 +157,9 @@ func request_player_list() -> void:
 	if not multiplayer.is_server():
 		return
 	var requester := multiplayer.get_remote_sender_id()
-	for id in [1] + multiplayer.get_peers():
+	var peer_ids := PackedInt32Array([1])
+	peer_ids.append_array(multiplayer.get_peers())
+	for id in peer_ids:
 		rpc_id(requester, "register_player", int(id))
 
 @rpc("authority", "call_local", "reliable")
