@@ -1,0 +1,8 @@
+# The user-facing issue endpoint verifies the Supabase access JWT at the gateway.
+[functions.issue-game-ticket]
+verify_jwt = true
+
+# The game server uses a dedicated high-entropy shared secret instead of a user JWT.
+# The handler performs its own constant-time secret comparison before ticket lookup.
+[functions.redeem-game-ticket]
+verify_jwt = false
