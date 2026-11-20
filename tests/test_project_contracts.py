@@ -57,9 +57,9 @@ class ProjectContracts(unittest.TestCase):
 
     def test_mobile_control_lambdas_have_consistent_indentation(self):
         controls = source("scripts/mobile_controls.gd")
-        self.assertIn("\\n\\t\\tInput.action_press(action)", controls)
-        self.assertIn("\\n\\t\\tInput.action_release(action)\\n\\t\\theld_actions.erase(action)", controls)
-        self.assertNotIn("\\n\\t\\t\\theld_actions.erase(action)", controls)
+        self.assertIn("\n\t\tInput.action_press(action)", controls)
+        self.assertIn("\n\t\tInput.action_release(action)\n\t\theld_actions.erase(action)", controls)
+        self.assertNotIn("\n\t\t\theld_actions.erase(action)", controls)
 
     def test_android_workflow_builds_with_godot_43_and_no_secrets(self):
         workflow = source(".github/workflows/android-debug.yml")
