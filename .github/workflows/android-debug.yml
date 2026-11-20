@@ -131,7 +131,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p build
-          godot --headless --path . --export-debug "Android" build/PROJECT_UNKNOWN-debug.apk
+          godot --headless --verbose --path . --export-debug "Android" build/PROJECT_UNKNOWN-debug.apk
           test -s build/PROJECT_UNKNOWN-debug.apk
           unzip -tq build/PROJECT_UNKNOWN-debug.apk
           "$ANDROID_HOME/build-tools/34.0.0/aapt" dump badging build/PROJECT_UNKNOWN-debug.apk \
