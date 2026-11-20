@@ -36,6 +36,12 @@ class ProjectContracts(unittest.TestCase):
         self.assertIn("Session.current_profile.duplicate(true)", auth)
         self.assertIn('change_scene_to_file("res://lobby.tscn")', auth)
 
+    def test_legacy_game_peer_iteration_uses_compatible_packed_arrays(self):
+        game = read("scripts/game.gd")
+        self.assertNotIn("[1] + multiplayer.get_peers()", game)
+        self.assertEqual(game.count("var peer_ids := PackedInt32Array([1])"), 2)
+        self.assertEqual(game.count("peer_ids.append_array(multiplayer.get_peers())"), 2)
+
     def test_android_export_preset_is_debug_arm64_with_internet(self):
         preset = source("export_presets.cfg")
         self.assertIn('name="Android"', preset)
