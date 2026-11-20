@@ -90,6 +90,20 @@ jobs:
           test -s "$HOME/.local/share/godot/export_templates/4.3.stable/android_release.apk"
           godot --version
 
+      - name: Configure Godot Android SDK and JDK paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.config/godot"
+          cat > "$HOME/.config/godot/editor_settings-4.tres" <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/android_sdk_path = "$ANDROID_HOME"
+          export/android/java_sdk_path = "$JAVA_HOME"
+          EOF
+          cat "$HOME/.config/godot/editor_settings-4.tres"
+
       - name: Import and validate Godot project
         shell: bash
         run: |
