@@ -29,7 +29,7 @@
 - Android export/signing, device QA and release packaging.
 
 ## Verification evidence (current work session)
-- Python contract suite: **52 tests passed** using `python -m unittest discover -s tests -p 'test_*.py' -v`.
+- Python contract suite: **76 tests passed** using `python -m unittest discover -s tests -p 'test_*.py' -v`.
 - Edge Function handler tests: **5 passed** across the current-key and legacy-key suites using Node 22's experimental TypeScript stripping and mocked Supabase HTTP boundaries.
 - Both Edge Function source files passed strict TypeScript checks using `tests/deno-runtime.d.ts` as a minimal Deno global declaration.
 - `python -m compileall -q tests` completed successfully.
@@ -42,8 +42,8 @@
 - Added `.github/workflows/android-debug.yml` for GitHub-hosted builds on pushes to `main` and manual dispatch. It installs Godot 4.3 stable with matching export templates, JDK 17, Android Platform 34, Build Tools 34.0.0, NDK 23.2.8568313 and CMake 3.10.2.4988404.
 - The workflow creates a fresh temporary debug signing key per run, smoke-tests the main scene, validates APK archive integrity and package metadata, then uploads `project-unknown-android-debug` for 7 days. Uninstall an older debug APK before installing one from a later run.
 - No release keystore, Supabase secret, migration deployment, Edge Function deployment or public server setup is included.
-- Local verification: 52/52 Python contract tests passed; 5/5 Edge Function tests passed; each Edge Function passed an independent strict TypeScript check; YAML parsed; Godot 4.7.2 headless import and main-scene startup exited 0.
-- Limitations: this environment has no Android SDK, Android build-tools, JDK 17 or Godot 4.3 export templates, and network DNS is unavailable. Local APK export therefore remains unverified. Godot 4.7.2 was used only for local import/startup checks, not as a substitute for the planned Godot 4.3 cloud build. The GitHub Actions run remains pending until the project is uploaded to a private repository.
+- Local verification: 76/76 Python contract tests passed; 5/5 Edge Function tests passed; each Edge Function passed an independent strict TypeScript check; YAML parsed; Godot 4.7.2 headless import and main-scene startup exited 0.
+- Limitations: this environment has no Android SDK, Android build-tools, JDK 17 or Godot 4.3 export templates, and network DNS is unavailable. Local APK export therefore remains unverified. Godot 4.7.2 was used only for local import/startup checks, not as a substitute for the planned Godot 4.3 cloud build. The GitHub Actions run remains pending; the source is on the public repository branch `codex/project-bootstrap-0.9.0` and can be built through manual dispatch or a pull-request run.
 
 ## Post-0.8 Supabase API-key compatibility review
 - Found and fixed a current-key compatibility defect in both game-ticket Edge Functions: opaque `sb_secret_` keys were incorrectly copied into `Authorization: Bearer`, where Supabase treats them as invalid JWTs.
