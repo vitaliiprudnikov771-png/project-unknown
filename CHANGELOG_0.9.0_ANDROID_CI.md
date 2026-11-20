@@ -28,3 +28,5 @@
 - The next Godot 4.3 run exposed malformed lambda-body indentation in the mobile controls script; indentation is now corrected and covered by a regression test.
 
 - Final callback indentation fix: `held_actions.erase(action)` now aligns with `Input.action_release(action)` at the lambda-body level; regression tests assert the exact indentation contract.
+
+- CI run #10 confirmed the remaining blocker was the extra indentation on `held_actions.erase(action)` in the `button_up` lambda. The statement has been moved to the correct lambda-body level; the local regression suite now checks this exact line.
