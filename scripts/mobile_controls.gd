@@ -56,7 +56,7 @@ func _add_direction_button(caption: String, action: String, offset: Vector2, rig
 		)
 	button.button_up.connect(func():
 		Input.action_release(action)
-			held_actions.erase(action)
+		held_actions.erase(action)
 		)
 	add_child(button)
 

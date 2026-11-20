@@ -26,3 +26,5 @@
 - Added contract tests for both regressions and made CI fail on `SCRIPT ERROR:` or `ERROR:` during Godot import and smoke testing.
 
 - The next Godot 4.3 run exposed malformed lambda-body indentation in the mobile controls script; indentation is now corrected and covered by a regression test.
+
+- Final callback indentation fix: `held_actions.erase(action)` now aligns with `Input.action_release(action)` at the lambda-body level; regression tests assert the exact indentation contract.
