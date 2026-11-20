@@ -13,7 +13,7 @@
 - Package ID `com.inksys.projectunknown` is a development default and must be confirmed before a public release.
 
 ## Verification status
-- Python contract tests: 78/78 passed.
+- Python contract tests: 79/79 passed.
 - Edge Function tests: 5/5 passed.
 - Strict TypeScript checks: both Edge Function files passed independently.
 - Godot 4.7.2 headless import and scene startup: exit code 0.
@@ -24,3 +24,5 @@
 - The first cloud run exposed an invalid `Array + PackedInt32Array` expression in the legacy 2D test scene; it now builds a `PackedInt32Array` and appends peers explicitly.
 - The second run exposed a mobile-control optional argument using inferred `:=` syntax; it now uses the Godot 4.3-compatible `right_side: bool = false` declaration.
 - Added contract tests for both regressions and made CI fail on `SCRIPT ERROR:` or `ERROR:` during Godot import and smoke testing.
+
+- The next Godot 4.3 run exposed malformed lambda-body indentation in the mobile controls script; indentation is now corrected and covered by a regression test.

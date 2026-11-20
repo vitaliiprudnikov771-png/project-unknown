@@ -50,12 +50,12 @@ func _add_direction_button(caption: String, action: String, offset: Vector2, rig
 		button.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 		button.position = offset
 	button.button_down.connect(func():
-			Input.action_press(action)
-			if not held_actions.has(action):
-				held_actions.append(action)
+		Input.action_press(action)
+		if not held_actions.has(action):
+			held_actions.append(action)
 		)
 	button.button_up.connect(func():
-			Input.action_release(action)
+		Input.action_release(action)
 			held_actions.erase(action)
 		)
 	add_child(button)
