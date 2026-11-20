@@ -101,6 +101,9 @@ jobs:
           [resource]
           export/android/android_sdk_path = "$ANDROID_HOME"
           export/android/java_sdk_path = "$JAVA_HOME"
+          export/android/debug_keystore = "$GODOT_ANDROID_KEYSTORE_DEBUG_PATH"
+          export/android/debug_keystore_user = "$GODOT_ANDROID_KEYSTORE_DEBUG_USER"
+          export/android/debug_keystore_pass = "$GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD"
           EOF
           cat "$HOME/.config/godot/editor_settings-4.tres"
 
@@ -125,6 +128,13 @@ jobs:
             echo "Godot main-scene smoke test reported errors."
             exit 1
           fi
+
+      - name: Validate Android debug signing configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s "$GODOT_ANDROID_KEYSTORE_DEBUG_PATH"
+          keytool -list -keystore "$GODOT_ANDROID_KEYSTORE_DEBUG_PATH" -storepass "$GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD" -alias "$GODOT_ANDROID_KEYSTORE_DEBUG_USER"
 
       - name: Export Android debug APK
         shell: bash
