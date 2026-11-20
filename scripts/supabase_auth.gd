@@ -107,4 +107,4 @@ func _friendly_error(code: int, message: String) -> String:
 		return "Адрес уже зарегистрирован или данные не прошли проверку."
 	if "email not confirmed" in lower:
 		return "Сначала подтверди адрес электронной почты."
-	return "Ошибка сервера (%d). Проверь настройки и повтори позже."
+	return "Ошибка сервера (%d). Проверь настройки и повтори позже." % code
