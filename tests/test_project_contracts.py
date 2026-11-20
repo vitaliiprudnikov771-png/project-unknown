@@ -14,6 +14,7 @@ class ProjectContracts(unittest.TestCase):
         self.assertIn('"4.3"', project)
         self.assertIn('"GL Compatibility"', project)
         self.assertIn('run/main_scene="res://auth.tscn"', project)
+        self.assertIn("textures/vram_compression/import_etc2_astc=true", project)
 
     def test_autoloads_are_registered(self):
         project = source("project.godot")
