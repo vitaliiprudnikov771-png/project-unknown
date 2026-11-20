@@ -37,7 +37,7 @@ class ProjectContracts(unittest.TestCase):
         self.assertIn('change_scene_to_file("res://lobby.tscn")', auth)
 
     def test_legacy_game_peer_iteration_uses_compatible_packed_arrays(self):
-        game = read("scripts/game.gd")
+        game = source("scripts/game.gd")
         self.assertNotIn("[1] + multiplayer.get_peers()", game)
         self.assertEqual(game.count("var peer_ids := PackedInt32Array([1])"), 2)
         self.assertEqual(game.count("peer_ids.append_array(multiplayer.get_peers())"), 2)
@@ -49,6 +49,17 @@ class ProjectContracts(unittest.TestCase):
         self.assertIn("architectures/arm64-v8a=true", preset)
         self.assertIn("permissions/internet=true", preset)
         self.assertIn('version/name="0.9.0-dev"', preset)
+
+    def test_mobile_controls_parameter_is_godot_43_compatible(self):
+        controls = source("scripts/mobile_controls.gd")
+        self.assertIn("right_side: bool = false", controls)
+        self.assertNotIn("right_side := false", controls)
+
+    def test_mobile_control_lambdas_have_consistent_indentation(self):
+        controls = source("scripts/mobile_controls.gd")
+        self.assertIn("\\n\\t\\tInput.action_press(action)", controls)
+        self.assertIn("\\n\\t\\tInput.action_release(action)\\n\\t\\theld_actions.erase(action)", controls)
+        self.assertNotIn("\\n\\t\\t\\theld_actions.erase(action)", controls)
 
     def test_android_workflow_builds_with_godot_43_and_no_secrets(self):
         workflow = source(".github/workflows/android-debug.yml")
